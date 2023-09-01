@@ -5,6 +5,8 @@ const router = express.Router();
 // Define route handlers
 router.get('/', (req: Request, res: Response) => {
   res.send('API Home');
+  res.send('Hello Express!');
+  res.sendFile(__dirname+'/index.html')
 });
 
 router.get('/users', (req: Request, res: Response) => {
