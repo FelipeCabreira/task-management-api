@@ -3,12 +3,11 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import apiRouter from './routes/api';
 import chalk from 'chalk';
-import { logger } from './config/logger';
+import { databaseConnect, logger } from '@config';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-// app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -16,9 +15,7 @@ app.use(logger);
 
 app.use('/api', apiRouter);
 
-const routingOptions = {
-  cors: true,
-};
+databaseConnect();
 
 try {
   app.listen(PORT, (): void => {
