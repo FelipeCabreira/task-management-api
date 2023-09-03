@@ -7,7 +7,7 @@
     "start": "nodemon ./src/index.ts localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:write": "prettier --write \"**/*.js\" \"**/*.ts\"",
-    "format:check": "prettier --check \"**/*.js\" \"**/*.ts\"",
+    "format:check": "prettier --check \"**/*.js\" \"**/*.ts\" \"src/**/*.ts\"",
     "lint": "eslint .",
     "build": "npx tsc"
   },
@@ -36,16 +36,22 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format:check"
+    }
+  },
   "nodemonConfig": {
     "ignore": [
       "**/test/**",
       "**/docs/**"
     ],
     "delay": 2500
-  },
-  "devDependencies": {
-    "eslint": "^8.48.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "prettier": "^3.0.3"
   }
 }
