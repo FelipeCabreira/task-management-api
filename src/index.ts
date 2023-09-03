@@ -16,6 +16,10 @@ app.use(logger);
 
 app.use('/api', apiRouter);
 
+const routingOptions = {
+  cors: true,
+};
+
 try {
   app.listen(PORT, (): void => {
     const server = `http://localhost:${PORT}`;
