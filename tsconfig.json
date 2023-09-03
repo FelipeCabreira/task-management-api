@@ -8,9 +8,13 @@
     "module": "CommonJS",
     "outDir": "./dist",
     "rootDir": "./src",
+    "baseUrl": "src",
     "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@lib": ["lib/index.ts"]
+    }
   },
   "include": ["src/**/*"]
 }
