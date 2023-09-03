@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 
+// route -> model -> controller -> service -> repository
+
 const router = express.Router();
 
 // Define route handlers
