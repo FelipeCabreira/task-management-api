@@ -6,7 +6,7 @@ module.exports = {
   tabWidth: 2, // Use 2 spaces for indentation
   useTabs: false, // Use spaces for indentation
   jsxSingleQuote: false, // Use double quotes for JSX attributes
-  jsxBracketSameLine: false, // Place the closing bracket of JSX elements on a new line
+  bracketSameLine: true, // Place the closing bracket of JSX elements on a new line
   arrowParens: 'always', // Include parentheses around a sole arrow function parameter
   bracketSpacing: true, // Add spaces inside of brackets in object literals
   endOfLine: 'auto', // Use the appropriate end of line character for your OS
