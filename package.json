@@ -33,6 +33,7 @@
     "morgan": "^1.10.0",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
@@ -40,11 +41,13 @@
     "body-parser": "^1.20.2",
     "chalk": "~4.1.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",
+    "path": "^0.12.7",
     "routing-controllers": "^0.10.4",
     "swagger-ui-express": "^5.0.0"
   },
