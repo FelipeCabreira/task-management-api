@@ -1,4 +1,4 @@
-import { getEnv } from '@lib';
+import { getEnv, toBool } from '@lib';
 import * as dotenv from 'dotenv';
 import path from 'path';
 
@@ -7,6 +7,12 @@ dotenv.config({
 });
 
 export const environment = {
+  node: getEnv('NODE_ENV', false),
+  app: {
+    routePrefix: getEnv('APP_ROUTE_PREFIX', false, 'api'),
+    port: getEnv('PORT', true),
+    banner: toBool(getEnv('APP_BANNER', false, 'true')),
+  },
   db: {
     username: getEnv('DB_USERNAME'),
     password: getEnv('DB_PASSWORD'),
