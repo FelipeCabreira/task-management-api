@@ -1,2 +1,2 @@
-export { BoardDTO, ColumnSimpleDTO } from './board.dto';
+export { BoardDTO, ColumnSimpleDTO, BoardSimpleDTO } from './board.dto';
 export { UserDTO } from './user.dto';

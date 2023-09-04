@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose';
+
 export enum Model {
   User = 'User',
   Board = 'Board',
@@ -13,4 +15,13 @@ export type Pagination = {
 export interface PaginatedResult<T> {
   totalCount: number;
   data: T[];
+}
+
+export interface AuthUser {
+  id: ObjectId;
+  username: string;
+}
+
+export interface AuthRequest extends Request {
+  user: AuthUser;
 }

@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import { GenericRepository } from './generic.repository';
 import { boardModel } from '@models';
-import { BoardDocument, BoardFields, IBoard } from '@types-database';
+import { BoardDocument, BoardFields, ColumnDocument, IBoard } from '@types-database';
 import { PaginatedResult, Pagination } from '@types';
 
 @Service()
@@ -29,11 +29,12 @@ export class BoardRepository extends GenericRepository<IBoard, BoardDocument, Bo
 
   async createColumn(boardId: string, columnName: string) {
     this.validateId(boardId);
-    const { columns }: any = await this.model.findOneAndUpdate(
+    // const { columns } = ( await this.model.findOneAndUpdate)
+    const columns = (await this.model.findOneAndUpdate(
       { _id: boardId },
       { $push: { columns: { name: columnName } } },
       { new: true },
-    );
+    )) as ColumnDocument[];
 
     return columns.pop();
   }

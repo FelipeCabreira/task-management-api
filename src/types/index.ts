@@ -1,1 +1,1 @@
-export { Model, Pagination, PaginatedResult } from './utils.type';
+export { Model, Pagination, PaginatedResult, AuthRequest, AuthUser } from './utils.type';

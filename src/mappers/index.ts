@@ -1,2 +1,2 @@
-export { BoardMapper } from './board.mapper';
+export { BoardMapper, BoardSimpleViewMapper, ColumnSimpleMapper } from './board.mapper';
 export { UserMapper } from './user.mapper';
