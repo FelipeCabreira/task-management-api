@@ -13,7 +13,7 @@ import {
   CurrentUser,
   Authorized,
 } from 'routing-controllers';
-import { CreateBoardPayload } from '@types/request';
+import { CreateBoardPayload } from '@types-request';
 
 @Controller('/board')
 export class BoardController {
@@ -24,5 +24,9 @@ export class BoardController {
   }
 
   @Post('/')
-  createBoard(@Body() board: CreateBoardPayload) {}
+  createBoard(@Body() board: CreateBoardPayload) {
+    // fieldErrorsHandler(boardPayloadValidator(board));
+
+    return this.boardService;
+  }
 }

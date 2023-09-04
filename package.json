@@ -2,9 +2,9 @@
   "name": "task-management-api",
   "version": "1.0.0",
   "description": "UNISINOS - Eng software class (create a base task management api) - Nodejs",
-  "main": "./src/index.ts",
+  "main": "./src/main.ts",
   "scripts": {
-    "start": "nodemon ./src/index.ts localhost 3000",
+    "start": "nodemon ./src/main.ts localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format:write": "prettier --write \"**/*.js\" \"**/*.ts\"",
     "format:check": "prettier --check \"**/*.js\" \"**/*.ts\" \"src/**/*.ts\"",
@@ -48,6 +48,7 @@
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",
     "path": "^0.12.7",
+    "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.10.4",
     "swagger-ui-express": "^5.0.0",
     "typedi": "^0.10.0"

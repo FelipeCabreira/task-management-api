@@ -3,6 +3,7 @@ import { Inject, Service } from 'typedi';
 import { NotFoundError } from 'routing-controllers';
 import { BoardMapper } from '@mappers';
 import { BoardDTO } from '@types-dto';
+import 'reflect-metadata';
 
 @Service()
 export class BoardService {

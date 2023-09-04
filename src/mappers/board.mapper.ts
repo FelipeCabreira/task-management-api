@@ -1,5 +1,5 @@
-import { BoardDocument } from '@types/database';
-import { BoardDTO } from '@types/dto';
+import { BoardDocument } from '@types-database';
+import { BoardDTO } from '@types-dto';
 
 export const BoardMapper = (data: BoardDocument): BoardDTO | null => {
   if (!data) {
