@@ -12,7 +12,16 @@
     "baseUrl": ".",
     "paths": {
       "@lib": ["src/lib/index.ts"],
-      "@config": ["src/config/index.ts"]
+      "@config": ["src/config/index.ts"],
+      "@controllers": ["src/controllers/index.ts"],
+      "@services": ["src/services/index.ts"],
+      "@repository": ["src/repository/index.ts"],
+      "@types": ["src/types/index.ts"],
+      "@models": ["src/models/index.ts"],
+      "@mappers": ["src/mappers/index.ts"],
+      "@types-request": ["src/types/request/index.ts"],
+      "@types-dto": ["src/types/dto/index.ts"],
+      "@types-database": ["src/types/database/index.ts"]
     },
     "strict": true,
     "esModuleInterop": true,
