@@ -15,8 +15,6 @@ app.use(express.json());
 app.use(cors());
 app.use(logger);
 
-// app.use('/api', apiRouter);
-
 const routingControllersOptions = {
   cors: true,
   routePrefix: environment.app.routePrefix,

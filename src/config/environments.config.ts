@@ -1,4 +1,4 @@
-import { getEnv, toBool } from '@lib';
+import { getEnv, toBool, toNumber } from '@lib-utils';
 import * as dotenv from 'dotenv';
 import path from 'path';
 
@@ -12,6 +12,9 @@ export const environment = {
     routePrefix: getEnv('APP_ROUTE_PREFIX', false, 'api'),
     port: getEnv('PORT', true),
     banner: toBool(getEnv('APP_BANNER', false, 'true')),
+  },
+  pagination: {
+    limit: toNumber(getEnv('PAGINATION_LIMIT', false, '10')),
   },
   db: {
     username: getEnv('DB_USERNAME'),

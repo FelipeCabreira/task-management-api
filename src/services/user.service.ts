@@ -20,19 +20,19 @@ export class UserService {
     this.boardRepository = boardRepository;
   }
 
-  async getUser(userId: string): Promise<UserDTO | null> {
+  async getUser(userId: string): Promise<UserDTO> {
     const user = await this.userRepository.getById(userId);
     if (!user) {
       throw new NotFoundError('User was not found');
     }
-    return UserMapper(user);
+    return UserMapper(user) as UserDTO;
   }
 
-  async getAllUsers(options: Pagination): Promise<{ totalCount: number; users: UserDTO[] | null } |> {
+  async getAllUsers(options: Pagination): Promise<{ totalCount: number; users: UserDTO[] }> {
     const { data, totalCount } = await this.userRepository.getAllUser(options);
     return {
       totalCount,
-      users: data.map(UserMapper),
+      users: data.map(UserMapper) as UserDTO[],
     };
   }
 
