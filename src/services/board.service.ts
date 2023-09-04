@@ -1,9 +1,9 @@
-import { BoardRepository } from '@repository';
 import { Inject, Service } from 'typedi';
 import { NotFoundError } from 'routing-controllers';
 import { BoardMapper } from '@mappers';
 import { BoardDTO } from '@types-dto';
 import 'reflect-metadata';
+import { BoardRepository } from '@repository';
 
 @Service()
 export class BoardService {
