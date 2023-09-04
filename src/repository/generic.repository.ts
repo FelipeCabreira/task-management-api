@@ -2,8 +2,8 @@ import { Document, Model, Types } from 'mongoose';
 import { InvalidMongooseIdError } from 'src/exceptions/InvalidMongooseIdError';
 
 export abstract class GenericRepository<T, D extends Document, F> {
-  public model: Model<T>;
-  public fields: F[];
+  public model!: Model<T>;
+  public fields: F[] = [];
 
   protected validateId(id: string) {
     if (!Types.ObjectId.isValid(id)) {
