@@ -8,7 +8,18 @@
     "target": "es2021",
     "module": "CommonJS",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["node_modules/@types"],
+    "moduleResolution": "node",
+    "allowJs": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@lib-utils": ["src/lib/index.ts"],
@@ -23,12 +34,7 @@
       "@types-dto": ["src/types/dto/index.ts"],
       "@types-database": ["src/types/database/index.ts"],
       "@types-queryparams": ["src/types/queryParams/index.ts"]
-    },
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.(tsx|ts|js}jsx)", "src"]
 }
