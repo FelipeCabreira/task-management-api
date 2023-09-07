@@ -1,7 +1,7 @@
 import { UserDocument } from '@types-database';
 import { UserDTO } from '@types-dto';
 
-export const UserMapper = (data: UserDocument): UserDTO | null => {
+export const UserMapper = (data: UserDocument): UserDTO | any => {
   if (!data) {
     return null;
   }

@@ -3,6 +3,7 @@ export {
   type ColumnDocument,
   type BoardDocument,
   type BoardModel,
+  type BoardMember,
 } from './board.type';
 export {
   type UserFields,

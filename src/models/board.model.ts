@@ -13,6 +13,19 @@ const boardSchema = new mongoose.Schema<IBoard, BoardModel>({
     type: String,
     maxlength: [1000, 'must not be longer than 1000 characters'],
   },
+  members: [
+    {
+      _id: false,
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Model.User,
+      },
+      // role: {
+      //   type: String,
+      //   default: RoleNames.VIEWER,
+      // },
+    },
+  ],
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,
