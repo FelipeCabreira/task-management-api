@@ -1,5 +1,6 @@
 import { getPaginationSettings } from '@lib-utils';
 import { BoardService, UserService } from '@services';
+import { Pagination } from '@types';
 import { UserListQueryParams } from '@types-queryparams';
 import { Controller, Get, Param, Params, QueryParams } from 'routing-controllers';
 import Container from 'typedi';
@@ -29,9 +30,9 @@ export class UserController {
     return this.userService.getUser(userId);
   }
 
-  // @Get("/:userId/boards")
-  // async userBoards(@Param("userId") userId: string, @QueryParams() query: Pagination) {
-  //   const options = getPaginationSettings(query);
-  //   return this.boardService.getUserBoards(userId, options);
-  // }
+  @Get('/:userId/boards')
+  async userBoards(@Param('userId') userId: string, @QueryParams() query: Pagination) {
+    const options = getPaginationSettings(query);
+    return this.boardService.getUserBoards(userId, options);
+  }
 }

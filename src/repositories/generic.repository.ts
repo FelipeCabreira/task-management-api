@@ -1,5 +1,5 @@
+import { InvalidMongooseIdError } from '@exceptions';
 import { Document, Model, Types } from 'mongoose';
-import { InvalidMongooseIdError } from 'src/exceptions/InvalidMongooseIdError';
 
 export abstract class GenericRepository<T, D extends Document, F> {
   public model!: Model<T>;

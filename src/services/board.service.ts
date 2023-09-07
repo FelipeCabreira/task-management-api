@@ -29,6 +29,17 @@ export class BoardService {
     return BoardSimpleViewMapper(result);
   }
 
+  async getUserBoards(
+    userId: string,
+    options: Pagination,
+  ): Promise<{ totalCount: number; boards: BoardSimpleDTO[] }> {
+    const { totalCount, data } = await this.boardRepository.getUserBoards(userId, options);
+    return {
+      totalCount,
+      boards: data.map(BoardSimpleViewMapper),
+    };
+  }
+
   async getBoards(options: Pagination): Promise<{ totalCount: number; boards: BoardSimpleDTO[] }> {
     const { totalCount, data } = await this.boardRepository.getAllBoards(options);
     return {

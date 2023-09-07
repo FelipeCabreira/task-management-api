@@ -15,7 +15,8 @@ import {
 } from 'routing-controllers';
 import { CreateBoardPayload, UpdateBoardPayload } from '@types-request';
 import { AuthUser, Pagination } from '@types';
-import { getPaginationSettings } from '@lib-utils';
+import { fieldErrorsHandler, getPaginationSettings } from '@lib-utils';
+import { boardPayloadValidator } from '@validators';
 
 @Controller('/board')
 export class BoardController {
@@ -27,7 +28,7 @@ export class BoardController {
 
   @Post('/')
   createBoard(@Body() board: CreateBoardPayload, @CurrentUser() user: AuthUser) {
-    // fieldErrorsHandler(boardPayloadValidator(board));
+    fieldErrorsHandler(boardPayloadValidator(board));
 
     return this.boardService.createBoard(board, user.id.toString());
   }
