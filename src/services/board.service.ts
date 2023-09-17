@@ -15,7 +15,7 @@ export class BoardService {
     this.boardRepository = boardRepository;
   }
 
-  async getBoard(boardId: string): Promise<BoardDTO | null> {
+  async getBoard(boardId: string): Promise<BoardDTO> {
     const board = await this.boardRepository.getById(boardId);
     if (!board) {
       throw new NotFoundError('Board was not found');
@@ -23,7 +23,7 @@ export class BoardService {
     return BoardMapper(board);
   }
 
-  async createBoard(board: any, userId?: string): Promise<BoardSimpleDTO | null> {
+  async createBoard(board: any, userId?: string): Promise<BoardSimpleDTO> {
     // board.members = [{ user: userId, role: RoleNames.ADMIN }];
     const result = await this.boardRepository.create(board);
     return BoardSimpleViewMapper(result);

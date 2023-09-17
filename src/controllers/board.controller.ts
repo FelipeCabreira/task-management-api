@@ -27,11 +27,20 @@ export class BoardController {
   }
 
   @Post('/')
-  createBoard(@Body() board: CreateBoardPayload, @CurrentUser() user: AuthUser) {
+  createBoard(@Body() board: CreateBoardPayload) {
     fieldErrorsHandler(boardPayloadValidator(board));
 
-    return this.boardService.createBoard(board, user.id.toString());
+    return this.boardService.createBoard(board);
   }
+  // createBoard(@Body() board: CreateBoardPayload, @CurrentUser() user?: AuthUser) {
+  //   fieldErrorsHandler(boardPayloadValidator(board));
+
+  //   if (user) {
+  //     return this.boardService.createBoard(board, user.id.toString());
+  //   } else {
+  //     return this.boardService.createBoard(board);
+  //   }
+  // }
 
   @Get('/')
   getBoards(@QueryParams() query: Pagination) {

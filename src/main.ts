@@ -1,12 +1,9 @@
-import express, { Application } from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import apiRouter from './routes/api';
-import chalk from 'chalk';
-import { databaseConnect, logger } from '@config';
-import { environment } from '@config';
-import { useExpressServer } from 'routing-controllers';
+import { databaseConnect, environment, logger } from '@config';
 import { controllers } from '@controllers';
+import chalk from 'chalk';
+import cors from 'cors';
+import express, { Application } from 'express';
+import { useExpressServer } from 'routing-controllers';
 
 const app: Application = express();
 

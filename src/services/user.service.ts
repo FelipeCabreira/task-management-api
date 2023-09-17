@@ -36,7 +36,7 @@ export class UserService {
     };
   }
 
-  async updateUser(userId: string, userData: UpdateUserPayload): Promise<UserDTO | null> {
+  async updateUser(userId: string, userData: UpdateUserPayload): Promise<UserDTO> {
     const user = await this.userRepository.getById(userId);
     if (!user) {
       throw new NotFoundError('User was not found.');
@@ -48,7 +48,7 @@ export class UserService {
     return UserMapper(user);
   }
 
-  async updateUserInfo(userId: string, userData: IUser): Promise<UserDTO | null> {
+  async updateUserInfo(userId: string, userData: IUser): Promise<UserDTO> {
     const user = await this.userRepository.updateUser(userId, userData);
     return UserMapper(user);
   }
