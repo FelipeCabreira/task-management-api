@@ -1,7 +1,14 @@
+import { fieldErrorsHandler, validator } from '@lib-utils';
 import { BoardService, UserService } from '@services';
-import { Body, Delete, Param, Patch, Post, Put } from 'routing-controllers';
+import {
+  MoveColumnPayloadSchema,
+  createColumnPayloadValidator,
+  updateColumnPayloadValidator,
+} from '@validators';
+import { Body, Controller, Delete, Param, Patch, Post, Put } from 'routing-controllers';
 import Container from 'typedi';
 
+@Controller('/boards/:boardId/columns')
 export class ColumnController {
   userService: UserService;
   boardService: BoardService;
@@ -13,7 +20,7 @@ export class ColumnController {
 
   @Post('/')
   async createColumn(@Param('boardId') boardId: string, @Body() columnData: { name: string }) {
-    // fieldErrorsHandler(createColumnPayloadValidator(columnData));
+    fieldErrorsHandler(createColumnPayloadValidator(columnData));
 
     await this.boardService.getBoard(boardId);
     return this.boardService.createColumn(boardId, columnData.name);
@@ -25,7 +32,7 @@ export class ColumnController {
     @Param('columnId') columnId: string,
     @Body() columnData: { name: string },
   ) {
-    // fieldErrorsHandler(updateColumnPayloadValidator(columnData));
+    fieldErrorsHandler(updateColumnPayloadValidator(columnData));
 
     await this.boardService.updateColumn(boardId, columnId, columnData.name);
     return this.boardService.getBoard(boardId);
@@ -37,9 +44,9 @@ export class ColumnController {
     @Param('columnId') columnId: string,
     @Body() columnData: { index: number },
   ) {
-    // const { columns } = await this.boardService.getBoard(boardId);
-    // const moveColumnPayloadValidator = validator(MoveColumnPayloadSchema(columns.length));
-    // fieldErrorsHandler(moveColumnPayloadValidator(columnData));
+    const { columns } = await this.boardService.getBoard(boardId);
+    const moveColumnPayloadValidator = validator(MoveColumnPayloadSchema(columns.length));
+    fieldErrorsHandler(moveColumnPayloadValidator(columnData));
 
     await this.boardService.updateColumnOrder(boardId, columnId, columnData.index);
     return this.boardService.getBoard(boardId);

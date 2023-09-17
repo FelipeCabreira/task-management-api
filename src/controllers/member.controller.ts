@@ -2,7 +2,7 @@ import { BoardService, MemberService, UserService } from '@services';
 import { Controller, Delete, Get, HttpError, Param, Post } from 'routing-controllers';
 import Container from 'typedi';
 
-@Controller()
+@Controller('/boards/:boardId/members')
 export class MemberController {
   memberService: MemberService;
   boardService: BoardService;
