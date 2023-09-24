@@ -35,14 +35,13 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
   ): Promise<BoardDocument> {
     const board = await this.boardModel.findById(boardId);
     const task = await this.model.findById(taskId);
-    const column = board?.columns.find((column) => column._id.equals(columnId));
+    const column = board?.columns.find((column) => column._id.equals(columnId)) as any;
 
-    if (task)
-      if (isNaN(index)) {
-        column?.tasks.push(task);
-      } else {
-        column?.tasks.splice(index, 0, task);
-      }
+    if (isNaN(index)) {
+      column?.tasks.push(task);
+    } else {
+      column?.tasks.splice(index, 0, task);
+    }
     return (await board?.save()) as BoardDocument;
   }
 
@@ -52,10 +51,10 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
     columnId: string,
   ): Promise<BoardDocument> {
     const board = await this.boardModel.findById(boardId);
-    const column = board?.columns.find((column) => column._id.equals(columnId));
+    const column = board?.columns.find((column) => column._id.equals(columnId)) as any;
     try {
       if (column !== undefined && column.tasks !== undefined) {
-        column.tasks = column?.tasks.filter((task) => !task?._id.equals(taskId));
+        column.tasks = column?.tasks.filter((task: any) => !task?._id.equals(taskId));
       }
     } catch (error) {
       throw new InvalidMongooseIdError(
