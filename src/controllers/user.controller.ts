@@ -1,8 +1,8 @@
 import { getPaginationSettings } from '@lib-utils';
 import { BoardService, UserService } from '@services';
-import { Pagination } from '@types';
 import { UserListQueryParams } from '@types-queryparams';
-import { Controller, Get, Param, Params, QueryParams } from 'routing-controllers';
+import { Pagination } from '@types-utils';
+import { Controller, Get, Param, QueryParams } from 'routing-controllers';
 import Container from 'typedi';
 
 @Controller('/users')

@@ -1,5 +1,5 @@
-import { Model } from '@types';
-import { IBoard, BoardModel } from '@types-database';
+import { BoardModel, IBoard } from '@types-database';
+import { Model } from '@types-utils';
 import mongoose from 'mongoose';
 
 const boardSchema = new mongoose.Schema<IBoard, BoardModel>({

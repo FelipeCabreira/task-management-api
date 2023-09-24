@@ -1,11 +1,11 @@
-import { Inject, Service } from 'typedi';
-import { NotFoundError } from 'routing-controllers';
 import { BoardMapper, BoardSimpleViewMapper, ColumnSimpleMapper } from '@mappers';
-import { BoardDTO, BoardSimpleDTO, ColumnSimpleDTO } from '@types-dto';
-import 'reflect-metadata';
 import { BoardRepository } from '@repository';
-import { Pagination } from '@types';
 import { BoardDocument, ColumnDocument } from '@types-database';
+import { BoardDTO, BoardSimpleDTO, ColumnSimpleDTO } from '@types-dto';
+import { Pagination } from '@types-utils';
+import 'reflect-metadata';
+import { NotFoundError } from 'routing-controllers';
+import { Inject, Service } from 'typedi';
 
 @Service()
 export class BoardService {

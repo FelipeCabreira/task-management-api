@@ -15,9 +15,9 @@ export abstract class GenericRepository<T, D extends Document, F> {
     return await doc.save();
   }
 
-  async getById(id: string): Promise<D | null> {
+  async getById(id: string): Promise<D> {
     this.validateId(id);
-    return await this.model.findById(id, this.fields.join(' '));
+    return (await this.model.findById(id, this.fields.join(' '))) as D;
   }
 
   async create(data: T): Promise<D> {

@@ -1,10 +1,6 @@
 import { fieldErrorsHandler, validator } from '@lib-utils';
 import { BoardService, UserService } from '@services';
-import {
-  MoveColumnPayloadSchema,
-  createColumnPayloadValidator,
-  updateColumnPayloadValidator,
-} from '@validators';
+import { MoveColumnPayloadSchema, updateColumnPayloadValidator } from '@validators';
 import { Body, Controller, Delete, Param, Patch, Post, Put } from 'routing-controllers';
 import Container from 'typedi';
 
@@ -20,7 +16,7 @@ export class ColumnController {
 
   @Post('/')
   async createColumn(@Param('boardId') boardId: string, @Body() columnData: { name: string }) {
-    fieldErrorsHandler(createColumnPayloadValidator(columnData));
+    // fieldErrorsHandler(createColumnPayloadValidator(columnData));
 
     await this.boardService.getBoard(boardId);
     return this.boardService.createColumn(boardId, columnData.name);

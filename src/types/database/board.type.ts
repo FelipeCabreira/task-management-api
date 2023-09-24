@@ -1,4 +1,4 @@
-import { UserDocument } from '@types-database';
+import { TaskDocument, UserDocument } from '@types-database';
 import { HydratedDocument, Model, PopulatedDoc, Types } from 'mongoose';
 
 export type BoardFields =
@@ -12,7 +12,7 @@ export type BoardFields =
 
 export interface IColumn {
   name: string;
-  // tasks: PopulatedDoc<TaskDocument>[];
+  tasks: PopulatedDoc<TaskDocument>[];
 }
 
 export type ColumnDocument = HydratedDocument<IColumn>;
@@ -24,7 +24,7 @@ export interface IBoard {
   description: string;
   timeCreated: Date;
   members: BoardMember[];
-  tags: Types.ObjectId[];
+  tags?: Types.ObjectId[];
   columns: ColumnDocument[];
 }
 

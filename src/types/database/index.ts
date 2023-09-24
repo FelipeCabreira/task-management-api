@@ -1,15 +1,20 @@
 export {
-  type BoardFields,
-  type ColumnDocument,
+  IBoard,
+  IColumn,
   type BoardDocument,
-  type BoardModel,
+  type BoardFields,
   type BoardMember,
+  type BoardModel,
+  type ColumnDocument,
 } from './board.type';
+export { ITask, type TaskDocument, type TaskFields, type TaskModel } from './task.type';
 export {
-  type UserFields,
-  type UserNotificationFields,
-  type UserModel,
+  INotification,
+  IUser,
+  IUserMethods,
+  NotificationDocument,
   type UserDocument,
+  type UserFields,
+  type UserModel,
+  type UserNotificationFields,
 } from './user.type';
-export { IColumn, IBoard } from './board.type';
-export { IUser, IUserMethods, INotification, NotificationDocument } from './user.type';
