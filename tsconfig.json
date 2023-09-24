@@ -23,6 +23,7 @@
     "baseUrl": ".",
     "paths": {
       "@lib-utils": ["src/lib/index.ts"],
+      "@core-utils": ["src/utils/index.ts"],
       "@config": ["src/config/index.ts"],
       "@controllers": ["src/controllers/index.ts"],
       "@services": ["src/services/index.ts"],
