@@ -21,9 +21,10 @@ export class TaskService {
     this.boardRepository = boardRepository;
   }
 
-  async createTask(taskData: any, boardId: string, currentUserId: string): Promise<TaskDTO> {
-    const author = await this.userRepository.getById(currentUserId);
-    const newTask = { ...taskData, author, board: boardId };
+  async createTask(taskData: any, boardId: string, currentUserId?: string): Promise<TaskDTO> {
+    // const author = await this.userRepository.getById(currentUserId);
+    // const newTask = { ...taskData, author, board: boardId };
+    const newTask = { ...taskData, board: boardId };
     const task = await this.taskRepository.create(newTask);
     return TaskMapper(task);
   }
