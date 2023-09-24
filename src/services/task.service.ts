@@ -32,7 +32,7 @@ export class TaskService {
     boardId: string,
     columnId: string,
     taskId: string,
-    index?: number,
+    index?: number | any,
   ): Promise<void> {
     const columnsWithTasks = await this.taskRepository.getBoardTasks(boardId);
     const columnWithTasks = columnsWithTasks.find((column) => column._id.equals(columnId));
