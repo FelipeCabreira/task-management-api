@@ -1,6 +1,6 @@
 import { IUser, IUserMethods, UserModel } from '@types-database';
+import { Model as ModelType } from '@types-utils';
 import mongoose from 'mongoose';
-import { Model as ModelType } from '@types';
 // import bcrypt from 'bcryptjs';
 // import uniqueValidator from 'mongoose-unique-validator';
 

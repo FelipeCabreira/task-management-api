@@ -1,9 +1,9 @@
 import { UserMapper } from '@mappers';
 import { BoardRepository, UserRepository } from '@repository';
-import { Pagination } from '@types';
 import { IUser } from '@types-database';
 import { UserDTO } from '@types-dto';
 import { UpdateUserPayload } from '@types-request';
+import { Pagination } from '@types-utils';
 import { NotFoundError } from 'routing-controllers';
 import { Inject, Service } from 'typedi';
 

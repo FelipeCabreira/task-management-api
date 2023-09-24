@@ -29,7 +29,7 @@
       "@repository": ["src/repositories/index.ts"],
       "@exceptions": ["src/exceptions/index.ts"],
       "@validators": ["src/validators/index.ts"],
-      "@types": ["src/types/index.ts"],
+      "@types-utils": ["src/types/utils/index.ts"],
       "@models": ["src/models/index.ts"],
       "@mappers": ["src/mappers/index.ts"],
       "@types-request": ["src/types/request/index.ts"],

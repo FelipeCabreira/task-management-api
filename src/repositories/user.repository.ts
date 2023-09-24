@@ -1,5 +1,4 @@
-import { Service } from 'typedi';
-import { GenericRepository } from './generic.repository';
+import { userModel } from '@models';
 import {
   BoardFields,
   IUser,
@@ -7,8 +6,9 @@ import {
   UserFields,
   UserNotificationFields,
 } from '@types-database';
-import { userModel } from '@models';
-import { PaginatedResult, Pagination } from '@types';
+import { PaginatedResult, Pagination } from '@types-utils';
+import { Service } from 'typedi';
+import { GenericRepository } from './generic.repository';
 
 @Service()
 export class UserRepository extends GenericRepository<IUser, UserDocument, UserFields> {

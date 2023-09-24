@@ -1,6 +1,6 @@
 import { boardModel } from '@models';
-import { PaginatedResult, Pagination } from '@types';
 import { BoardDocument, BoardFields, IBoard } from '@types-database';
+import { PaginatedResult, Pagination } from '@types-utils';
 import { Service } from 'typedi';
 import { GenericRepository } from './generic.repository';
 

@@ -1,6 +1,6 @@
+import { ITask, TaskModel } from '@types-database';
+import { Model } from '@types-utils';
 import mongoose from 'mongoose';
-import { ITask, TaskModel } from '../types/database/task.type.js';
-import { Model } from '../types/utils.type.js';
 
 const taskSchema = new mongoose.Schema({
   title: {

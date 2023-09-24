@@ -1,22 +1,10 @@
-import { BoardService } from '@services';
-import Container from 'typedi';
-import {
-  Param,
-  Body,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Controller,
-  QueryParams,
-  UseBefore,
-  CurrentUser,
-  Authorized,
-} from 'routing-controllers';
-import { CreateBoardPayload, UpdateBoardPayload } from '@types-request';
-import { AuthUser, Pagination } from '@types';
 import { fieldErrorsHandler, getPaginationSettings } from '@lib-utils';
+import { BoardService } from '@services';
+import { CreateBoardPayload, UpdateBoardPayload } from '@types-request';
+import { Pagination } from '@types-utils';
 import { boardPayloadValidator } from '@validators';
+import { Body, Controller, Delete, Get, Param, Post, Put, QueryParams } from 'routing-controllers';
+import Container from 'typedi';
 
 @Controller('/board')
 export class BoardController {
