@@ -1,7 +1,16 @@
-import { BoardDocument, BoardModel, UserFields } from '@types-database';
-import { GenericRepository } from './generic.repository';
-import { boardModel } from '@models';
+import { InvalidMongooseIdError } from '@exceptions';
+import { boardModel, taskModel } from '@models';
+import {
+  BoardDocument,
+  BoardModel,
+  ColumnDocument,
+  ITask,
+  TaskDocument,
+  TaskFields,
+  UserFields,
+} from '@types-database';
 import { Service } from 'typedi';
+import { GenericRepository } from './generic.repository';
 
 @Service()
 export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskFields> {
@@ -14,7 +23,7 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
     this.fields = ['_id', 'title', 'description', 'author', 'board', 'assignees', 'tags'];
     this.userFields = ['_id', 'username', 'avatarImageURL', 'name', 'surname', 'email'];
     // this.tagFields = ["_id", "key", "name"];
-    // this.model = Task;
+    this.model = taskModel;
     this.boardModel = boardModel;
   }
 
@@ -22,19 +31,19 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
     taskId: string,
     boardId: string,
     columnId: string,
-    index?: number,
+    index: number,
   ): Promise<BoardDocument> {
     const board = await this.boardModel.findById(boardId);
     const task = await this.model.findById(taskId);
-    if (board) {
-      const column = board?.columns.find((column) => column._id.equals(columnId));
+    const column = board?.columns.find((column) => column._id.equals(columnId));
+
+    if (task)
       if (isNaN(index)) {
         column?.tasks.push(task);
       } else {
         column?.tasks.splice(index, 0, task);
       }
-      return await board.save();
-    }
+    return (await board?.save()) as BoardDocument;
   }
 
   async removeTaskFromColumn(
@@ -43,13 +52,21 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
     columnId: string,
   ): Promise<BoardDocument> {
     const board = await this.boardModel.findById(boardId);
-    const column = board.columns.find((column) => column._id.equals(columnId));
-    column.tasks = column.tasks.filter((task) => !task._id.equals(taskId));
-    return await board.save();
+    const column = board?.columns.find((column) => column._id.equals(columnId));
+    try {
+      if (column !== undefined && column.tasks !== undefined) {
+        column.tasks = column?.tasks.filter((task) => !task?._id.equals(taskId));
+      }
+    } catch (error) {
+      throw new InvalidMongooseIdError(
+        'Unable to remove task from columns - Columns undefined or task undefined',
+      );
+    }
+    return (await board?.save()) as BoardDocument;
   }
 
   async removeTaskFromBoard(taskId: string, boardId: string): Promise<void> {
-    await Board.findOneAndUpdate(
+    await boardModel.findOneAndUpdate(
       { _id: boardId, columns: { $elemMatch: { tasks: taskId } } },
       { $pull: { 'columns.$.tasks': taskId } },
     );
@@ -61,18 +78,18 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
       populate: {
         path: 'tasks',
         select: this.fields.join(' '),
-        populate: {
-          path: 'author assignees tags',
-          select: this.userFields.join(' ') + this.tagFields.join(' '),
-        },
+        // populate: {
+        //   path: 'author assignees tags',
+        //   select: this.userFields.join(' ') + this.tagFields.join(' '),
+        // },
       },
     });
-    return board.columns;
+    return board?.columns as ColumnDocument[];
   }
 
-  async getById(id: string): Promise<TaskDocument | null> {
+  async getById(id: string): Promise<TaskDocument> {
     this.validateId(id);
-    return await this.model
+    return (await this.model
       .findById(id, this.fields.join(' '))
       .populate({
         path: 'author',
@@ -81,10 +98,10 @@ export class TaskRepository extends GenericRepository<ITask, TaskDocument, TaskF
       .populate({
         path: 'assignees',
         select: this.userFields.join(' '),
-      });
+      })) as TaskDocument;
     // .populate({
-    //   path: "tags",
-    //   select: this.tagFields.join(" "),
+    //   path: 'tags',
+    //   select: this.tagFields.join(' '),
     // });
   }
 

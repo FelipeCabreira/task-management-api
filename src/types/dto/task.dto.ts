@@ -5,7 +5,7 @@ export interface TaskDTO {
   title: string;
   description: string;
   author: UserDTO;
-  assignees: UserDTO[];
+  assignees?: UserDTO[];
   // tags: TagDTO[];
 }
 
